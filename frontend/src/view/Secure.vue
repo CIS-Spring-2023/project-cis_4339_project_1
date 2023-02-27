@@ -1,5 +1,3 @@
-// eslint-disable-next-line vue/multi-word-component-names //
-eslint-disable-next-line vue/multi-word-component-names
 <template>
   <div id="secure">
     <h1>Secure Area</h1>
