@@ -4,3 +4,4 @@
     <p>This is a secure area</p>
   </div>
 </template>
+<!-- testing this push -->
