@@ -2,10 +2,17 @@
 
 <template>
   <div>
+    <h1>Login</h1>
     <form @submit.prevent="login">
-      <input type="text" v-model="username" placeholder="Username">
-      <input type="password" v-model="password" placeholder="password">
-      <button type="submit">Login!</button>
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" v-model="username">
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" v-model="password">
+      </div>
+      <button type="submit">Log in</button>
     </form>
   </div>
 </template>
@@ -19,19 +26,17 @@ export default {
     }
   },
   methods: {
-    async login() {
-      // make an API call to authenticate the user
-      try {
-        const response = await axios.post('/api/login', {
-          username: this.username,
-          password: this.password
-        })
-        // redirect the user to the dashboard page
+    login() {
+      // Hardcoded credentials for demonstration purposes only
+      const validUsername = 'myusername'
+      const validPassword = 'mypassword'
+
+      if (this.username === validUsername && this.password === validPassword) {
+        // If the credentials are valid, redirect the user to the dashboard page
         this.$router.push('/dashboard')
-      } catch (error) {
-        // show an error message
-        console.error(error)
-        alert('Invalid username and/or password')
+      } else {
+        // If the credentials are not valid, show an error message
+        alert('Invalid username or password')
       }
     }
   }
