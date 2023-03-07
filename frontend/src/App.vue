@@ -51,7 +51,7 @@ export default {
                 Dashboard
               </router-link>
             </li>
-            <li v-if="user.isLoggedIn">
+            <li v-if = "user.isEditor">
               <router-link to="/intakeform">
                 <span
                   style="position: relative; top: 6px"
@@ -61,7 +61,7 @@ export default {
                 Client Intake Form
               </router-link>
             </li>
-            <li v-if="user.isLoggedIn">
+            <li v-if = "user.isEditor">
               <router-link to="/eventform">
                 <span
                   style="position: relative; top: 6px"
@@ -71,9 +71,7 @@ export default {
                 Create Event
               </router-link>
             </li>
-            <li v-if = "user.role === 'viewer'"> viewer </li>
-            <li v-if = "user.role === 'editor'"> editor </li>
-            <li v-if="user.isLoggedIn">
+            <li v-if = "user.isViewer">
               <router-link to="/findclient">
                 <span
                   style="position: relative; top: 6px"
@@ -83,7 +81,7 @@ export default {
                 Find Client
               </router-link>
             </li>
-            <li v-if="user.isLoggedIn">
+            <li v-if = "user.isViewer">
               <router-link to="/findevents">
                 <span
                   style="position: relative; top: 6px"
@@ -111,7 +109,7 @@ export default {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }} you are a {{ user.role }}
+              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarUserMenuLink">
               <li class="nav-item">
