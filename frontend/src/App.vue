@@ -71,6 +71,8 @@ export default {
                 Create Event
               </router-link>
             </li>
+            <li v-if = "user.role === 'viewer'"> viewer </li>
+            <li v-if = "user.role === 'editor'"> editor </li>
             <li v-if="user.isLoggedIn">
               <router-link to="/findclient">
                 <span
@@ -109,7 +111,7 @@ export default {
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
+              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }} you are a {{ user.role }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarUserMenuLink">
               <li class="nav-item">
