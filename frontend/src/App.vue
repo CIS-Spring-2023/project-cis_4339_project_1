@@ -1,6 +1,8 @@
+
 <script>
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
+import { useLoggedInUserStore } from "@/store/loginuser";
 
 export default {
   name: 'App',
@@ -8,6 +10,10 @@ export default {
     return {
       orgName: 'Dataplatform'
     }
+  },
+  setup() {
+    const user = useLoggedInUserStore();
+    return { user };
   },
   created() {
     axios.get(`${apiURL}/org`).then((res) => {
@@ -26,6 +32,16 @@ export default {
         <nav class="mt-10">
           <ul class="flex flex-col gap-4">
             <li>
+              <router-link to="/login">
+                <span
+                style="position: relative; top:6px"
+                class="material-icons"
+                >login</span>
+                
+                Login Page
+              </router-link>
+            </li>
+            <li>
               <router-link to="/">
                 <span
                   style="position: relative; top: 6px"
@@ -35,7 +51,7 @@ export default {
                 Dashboard
               </router-link>
             </li>
-            <li>
+            <li v-if = "user.isEditor">
               <router-link to="/intakeform">
                 <span
                   style="position: relative; top: 6px"
@@ -45,7 +61,7 @@ export default {
                 Client Intake Form
               </router-link>
             </li>
-            <li>
+            <li v-if = "user.isEditor">
               <router-link to="/eventform">
                 <span
                   style="position: relative; top: 6px"
@@ -55,7 +71,7 @@ export default {
                 Create Event
               </router-link>
             </li>
-            <li>
+            <li v-if = "user.isViewer">
               <router-link to="/findclient">
                 <span
                   style="position: relative; top: 6px"
@@ -65,7 +81,7 @@ export default {
                 Find Client
               </router-link>
             </li>
-            <li>
+            <li v-if = "user.isViewer">
               <router-link to="/findevents">
                 <span
                   style="position: relative; top: 6px"
@@ -75,6 +91,34 @@ export default {
                 Find Event
               </router-link>
             </li>
+            <li class="nav-item" v-if="!user.isLoggedIn">
+            <router-link class="nav-link" to="/login">
+              <span
+                  style="position: relative; top:6px"
+                  class="material-icons"
+                  >login</span
+                >
+                login</router-link>
+          </li>
+          <li class="nav-item dropdown" v-if="user.isLoggedIn">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarUserMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarUserMenuLink">
+              <li class="nav-item">
+                <a href="">
+                  <span @click="store.logout()" class="nav-link"><i class="bi bi-box-arrow-left"></i> Logout</span>
+                </a>
+              </li>
+            </ul>
+          </li>
           </ul>
         </nav>
       </header>
