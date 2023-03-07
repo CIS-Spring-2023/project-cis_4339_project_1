@@ -46,7 +46,7 @@ export default {
               </router-link>
             </li>
             <li>
-              <router-link to="/intakeform">
+              <router-link to="/intakeform" v-if="isLoggedIn">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -56,7 +56,7 @@ export default {
               </router-link>
             </li>
             <li>
-              <router-link to="/eventform">
+              <router-link to="/eventform" v-if="isLoggedIn">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -66,7 +66,7 @@ export default {
               </router-link>
             </li>
             <li>
-              <router-link to="/findclient">
+              <router-link to="/findclient" v-if="isLoggedIn">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
@@ -76,7 +76,7 @@ export default {
               </router-link>
             </li>
             <li>
-              <router-link to="/findevents">
+              <router-link to="/findevents" v-if="isLoggedIn">
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
