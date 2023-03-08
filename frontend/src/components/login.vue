@@ -1,20 +1,57 @@
-// login.vue 
+<!-- eslint-disable prettier/prettier -->
+// eslint-disable-next-line vue/multi-word-component-names
+<!-- login.vue -->
 
 <template>
-  <div>
-    <h1>Login</h1>
-    <form @submit.prevent="login">
-      <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" v-model="username">
+  <main>
+    <div>
+      <h1
+        class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
+      >
+        Login
+      </h1>
+    </div>
+    <div class="px-10 py20">
+      <form @submit.prevent="login">
+      <!--grid container-->
+      <div 
+        class="grid grid-cols-1 sm: grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
+        ></div>
+      <!--form field-->
+      <div class="flex flex-col">
+        <label class="block">
+          <span class="text-gray-700">Username</span>
+          <span style="color: #ff0000">*</span>
+            <input
+              type="text"
+              id="username"
+              class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            v-model="username"
+          />
+        </label>
       </div>
-      <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" v-model="password">
+      <div class="flex flex-col">
+        <label class="block">
+          <span class="text-gray-700">Password</span>
+          <span style="color: #ff0000">*</span>
+            <input
+              type="text"
+              id="password"
+              class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            v-model="Password"
+          />
+        </label>
+
+        <div class="flex justify-between mt-10 mr-20">
+          <button class="bg-red-700 text-white rounded" type="submit">
+            Login
+          </button>
+        </div>
       </div>
-      <button type="submit">Log in</button>
+      
     </form>
-  </div>
+    </div>
+  </main>
 </template>
 
 <script>
