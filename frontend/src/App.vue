@@ -96,9 +96,9 @@ export default {
               <span
                   style="position: relative; top:6px"
                   class="material-icons"
-                  >login</span
+                  ></span
                 >
-                login</router-link>
+                </router-link>
           </li>
           <li class="nav-item dropdown" v-if="user.isLoggedIn">
             <a
