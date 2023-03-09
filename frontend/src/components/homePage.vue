@@ -1,12 +1,14 @@
+<!-- eslint-disable prettier/prettier -->
 <script>
 import { DateTime } from 'luxon'
 import axios from 'axios'
 import AttendanceChart from './barChart.vue'
+import PieChart from './PieChart.vue'
 const apiURL = import.meta.env.VITE_ROOT_API
 
 export default {
   components: {
-    AttendanceChart
+    AttendanceChart, PieChart
   },
   data() {
     return {
@@ -91,6 +93,11 @@ export default {
                 <th class="p-4 text-left">Event Date</th>
                 <th class="p-4 text-left">Number of Attendees</th>
               </tr>
+              <tr class="p-4 text-left">
+                <th class="p-4 text-left">Party</th>
+                <th class="p-4 text-left">3-10-2023</th>
+                <th class="p-4 text-left">12</th>
+              </tr>
             </thead>
             <tbody class="divide-y divide-gray-300">
               <tr
@@ -110,7 +117,7 @@ export default {
               :label="labels"
               :chart-data="chartData"
             ></AttendanceChart>
-
+            <PieChart></PieChart>
             <!-- Start of loading animation -->
             <div class="mt-40" v-if="loading">
               <p
