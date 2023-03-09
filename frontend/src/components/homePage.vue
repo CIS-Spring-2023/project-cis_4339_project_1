@@ -3,11 +3,12 @@
 import { DateTime } from 'luxon'
 import axios from 'axios'
 import AttendanceChart from './barChart.vue'
+import PieChart from './PieChart.vue'
 const apiURL = import.meta.env.VITE_ROOT_API
 
 export default {
   components: {
-    AttendanceChart
+    AttendanceChart, PieChart
   },
   data() {
     return {
@@ -116,7 +117,7 @@ export default {
               :label="labels"
               :chart-data="chartData"
             ></AttendanceChart>
-
+            <PieChart></PieChart>
             <!-- Start of loading animation -->
             <div class="mt-40" v-if="loading">
               <p
