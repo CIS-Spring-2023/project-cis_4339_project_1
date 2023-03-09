@@ -5,16 +5,9 @@ export const PieChart = {
       datasets: [
         {
           label: "Number of Moons",
-          data: [0, 0, 1, 2, 79, 82, 27, 14],
-          backgroundColor: "rgba(54,73,93,.5)",
+          data: [5, 8, 9, 2, 10, 14, 27, 14],
+          backgroundColor: ['rgba(54,73,93,.5)','rgba(14,24,244,.2)','rgba(46,68,35,.5)','rgba(245,40,145,.8)','rgba(63,12,57,.8)','rgba(129,140,117,.8)','rgba(186,148,53,.8)','rgba(111,123,214,.8)'],
           borderColor: "#36495d",
-          borderWidth: 3
-        },
-        {
-          label: "Planetary Mass (relative to the Sun x 10^-6)",
-          data: [0.166, 2.081, 3.003, 0.323, 954.792, 285.886, 43.662, 51.514],
-          backgroundColor: "rgba(71, 183,132,.5)",
-          borderColor: "#47b784",
           borderWidth: 3
         }
       ]
