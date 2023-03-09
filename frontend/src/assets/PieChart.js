@@ -1,7 +1,7 @@
 export const PieChart = {
     type: "pie",
     data: {
-      labels: ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"],
+      labels: ["77459", "77477", "75201", "73344", "75002", "75011", "75022", "75014"],
       datasets: [
         {
           label: "Number of Moons",
