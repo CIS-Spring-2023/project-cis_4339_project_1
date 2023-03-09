@@ -36,9 +36,9 @@ export const useLoggedInUserStore = defineStore({
       this.patch({
         name: "",
         isLoggedIn: false
-      });
-
-      // we could do other stuff like redirecting the user
+      }); 
+      // trying to redirect user to dashboard 
+      this.$router.push("/");
     }
   }
 });
