@@ -3,6 +3,7 @@ import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
+let id = 0
 
 export default {
   setup() {
@@ -22,8 +23,20 @@ export default {
           county: '',
           zip: ''
         },
-        description: ''
-      }
+        description: '',
+      },
+      serviceOp: [
+          {id: id++, serviceName: 'Grill Out', deactivated: false},
+          {id: id++, serviceName: 'Hide &', deactivated: true},
+          {id: id++, serviceName: 'Seek', deactivated: false}
+        ],
+      todos: [
+        { id: '1', text: 'Learn HTML' },
+        { id: '2', text: 'Learn JavaScript' },
+        { id: '3', text: 'Learn Vue' }
+      ],
+      hidede: false,
+      newser: ''
     }
   },
   methods: {
@@ -42,6 +55,19 @@ export default {
             console.log(error)
           })
       }
+    },
+    removeTodo(todo) {
+      this.todos = this.todos.filter((t) => t !== todo)
+    },
+    removeServicel(removeServicel) {
+      this.serviceOp = this.serviceOp.filter((t) => t !== removeServicel)
+    },
+    editServicel(removeServicel) {
+      this.serviceOp = this.serviceOp.filter((t) => t !== removeServicel)
+    },
+    addser(){
+      this.serviceOp.push({ id: id++, serviceName: this.newser , deactivated: false})
+      this.newser = ''
     }
   },
   // sets validations for the various data properties
@@ -51,6 +77,13 @@ export default {
         name: { required },
         date: { required }
       }
+    }
+  },
+  computed: {
+    filteredActive() {
+      return this.hidede
+        ? this.serviceOp.filter((t) => !t.deactivated)
+        : this.serviceOp
     }
   }
 }
@@ -136,7 +169,44 @@ export default {
           <!-- form field -->
           <div class="flex flex-col grid-cols-3">
             <label>Services Offered at Event</label>
+            <ul>
+              <li v-for="todo in todos" :key="todo.id">
+              {{ todo.text }}
+              <button @click="removeTodo(todo)">X</button>
+              </li>
+            </ul>
+            <ul>
+              <li v-for="servicel in filteredActive" :key="servicel.id">
+                <input
+                  type= "checkbox"
+                  :id=  servicel.serviceName
+                  :value= servicel.serviceName
+                  v-model="event.services"
+                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
+                  notchecked
+                />
+                <span :class="{ deactive: servicel.deactivated }">{{ servicel.serviceName }}</span>
+              <!-- this is where a v if logged in is needed all below this  -->
+              <button
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+              @click="removeServicel(servicel)">X</button>
+              <input type="checkbox" v-model="servicel.deactivated">
+              <!-- thi sis the button that will be used to deactivate a  -->
+              <button
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+              @click="editServicel(servicel)">Edit</button>
+              <!-- that should be all the things that are needed -->
+              </li>
+            </ul>
+            <!-- another if editor should go here  -->
+            <button @click.prevent="hidede = !hidede">
+            {{ hidede ? 'Show all' : 'Hide deactivated' }}
+             </button>
             <div>
+              <form @submit.prevent="addser">
+              <input v-model="newser">
+              <button>Add Service</button>
+              </form>
               <label for="familySupport" class="inline-flex items-center">
                 <input
                   type="checkbox"
@@ -268,3 +338,10 @@ export default {
     </div>
   </main>
 </template>
+
+
+<style>
+.deactive {
+  text-decoration: line-through;
+}
+</style>
