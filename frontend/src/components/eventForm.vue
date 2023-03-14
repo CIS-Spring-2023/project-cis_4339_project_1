@@ -30,13 +30,9 @@ export default {
           {id: id++, serviceName: 'Hide &', deactivated: true},
           {id: id++, serviceName: 'Seek', deactivated: false}
         ],
-      todos: [
-        { id: '1', text: 'Learn HTML' },
-        { id: '2', text: 'Learn JavaScript' },
-        { id: '3', text: 'Learn Vue' }
-      ],
       hidede: true,
-      newser: ''
+      newser: '',
+      editing: false
     }
   },
   methods: {
@@ -55,9 +51,6 @@ export default {
             console.log(error)
           })
       }
-    },
-    removeTodo(todo) {
-      this.todos = this.todos.filter((t) => t !== todo)
     },
     removeServicel(removeServicel) {
       this.serviceOp = this.serviceOp.filter((t) => t !== removeServicel)
@@ -181,26 +174,25 @@ export default {
                 />
                 <span :class="{ deactive: servicel.deactivated }">{{ servicel.serviceName }}</span>
               <!-- this is where a v if logged in is needed all below this  -->
+              <input type="checkbox" v-model="servicel.deactivated">
+              <!-- thi sis the button that will be used to deactivate a  -->
+
+
+              <input type = text v-model=" servicel.serviceName " v-if="editing">
               <button
               class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
               @click="removeServicel(servicel)">X</button>
-              <input type="checkbox" v-model="servicel.deactivated">
-              <!-- thi sis the button that will be used to deactivate a  -->
-              <button
-              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
-              @click="editServicel(servicel)">Edit</button>
 
-              <input type = text v-model=" servicel.serviceName" >
-
-              <button
-              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
-              @click="editServicel(servicel)">Update</button>
               <!-- that should be all the things that are needed -->
               </li>
             </ul>
             <!-- another if editor should go here  -->
             <button @click.prevent="hidede = !hidede">
             {{ hidede ? 'Show Deactivated' : 'Hide Deactivated' }}
+             </button>
+             <button class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+             @click.prevent="editing = !editing">
+            {{ editing ? 'Update' : 'Edit' }}
              </button>
             <div>
               <form @submit.prevent="addser">
