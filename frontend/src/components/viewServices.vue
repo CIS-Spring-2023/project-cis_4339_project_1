@@ -113,7 +113,7 @@ export default {
                 <span :class="{ deactive: servicel.deactivated }">{{ servicel.serviceName }}</span>
               <!-- this is where a v if logged in is needed all below this  -->
             <div v-if = "user.isEditor">
-              <button class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+              <button class="bg-red-700 text-white rounded" 
              @click.prevent="servicel.deactivated = !servicel.deactivated">
             {{ servicel.deactivated ? 'Inactive' : 'Active' }}
              </button>
