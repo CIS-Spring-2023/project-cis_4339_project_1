@@ -32,7 +32,7 @@ export default {
         <nav class="mt-10">
           <ul class="flex flex-col gap-4">
             <li>
-              <router-link to="/login">
+              <router-link to="/login" v-if="!user.isLoggedIn">
                 <span
                 style="position: relative; top:6px"
                 class="material-icons"
