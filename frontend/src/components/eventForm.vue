@@ -362,3 +362,5 @@ button{
   text-decoration: line-through;
 }
 </style>
+
+// Credit to https://vuejs.org/tutorial
