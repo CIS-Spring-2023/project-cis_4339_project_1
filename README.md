@@ -21,5 +21,9 @@ cd frontend
 Follow instructions in frontend README for setup and running as a local instance.
 
 **The following credentials are hardcoded into the application**
+```
 Viewer - Username: vi Password: vi
+```
+```
 Editor - Username: ed Password: ed 
+```
