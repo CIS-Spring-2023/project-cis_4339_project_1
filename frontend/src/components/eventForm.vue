@@ -35,7 +35,7 @@ export default {
         { id: '2', text: 'Learn JavaScript' },
         { id: '3', text: 'Learn Vue' }
       ],
-      hidede: false,
+      hidede: true,
       newser: ''
     }
   },
@@ -170,12 +170,6 @@ export default {
           <div class="flex flex-col grid-cols-3">
             <label>Services Offered at Event</label>
             <ul>
-              <li v-for="todo in todos" :key="todo.id">
-              {{ todo.text }}
-              <button @click="removeTodo(todo)">X</button>
-              </li>
-            </ul>
-            <ul>
               <li v-for="servicel in filteredActive" :key="servicel.id">
                 <input
                   type= "checkbox"
@@ -195,19 +189,26 @@ export default {
               <button
               class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
               @click="editServicel(servicel)">Edit</button>
+
+              <input type = text v-model=" servicel.serviceName" >
+
+              <button
+              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+              @click="editServicel(servicel)">Update</button>
               <!-- that should be all the things that are needed -->
               </li>
             </ul>
             <!-- another if editor should go here  -->
             <button @click.prevent="hidede = !hidede">
-            {{ hidede ? 'Show all' : 'Hide deactivated' }}
+            {{ hidede ? 'Show Deactivated' : 'Hide Deactivated' }}
              </button>
             <div>
               <form @submit.prevent="addser">
               <input v-model="newser">
               <button>Add Service</button>
               </form>
-              <label for="familySupport" class="inline-flex items-center">
+            </div>
+              <!-- <label for="familySupport" class="inline-flex items-center">
                 <input
                   type="checkbox"
                   id="familySupport"
@@ -218,7 +219,7 @@ export default {
                 />
                 <span class="ml-2">Family Support</span>
               </label>
-            </div>
+
             <div>
               <label for="adultEducation" class="inline-flex items-center">
                 <input
@@ -257,7 +258,7 @@ export default {
                 />
                 <span class="ml-2">Early Childhood Education</span>
               </label>
-            </div>
+            </div> -->
           </div>
         </div>
 
@@ -341,6 +342,12 @@ export default {
 
 
 <style>
+input{
+  border: 1px solid black
+}
+button{
+  border: 1px solid black
+}
 .deactive {
   text-decoration: line-through;
 }
