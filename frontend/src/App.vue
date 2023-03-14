@@ -72,6 +72,16 @@ export default {
               </router-link>
             </li>
             <li v-if = "user.isViewer">
+              <router-link to="/viewservices">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                View Services
+              </router-link>
+            </li>
+            <li v-if = "user.isViewer">
               <router-link to="/findclient">
                 <span
                   style="position: relative; top: 6px"
