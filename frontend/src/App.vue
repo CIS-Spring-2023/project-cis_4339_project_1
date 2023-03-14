@@ -8,7 +8,7 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform'
+      orgName: 'CIS 4339 GROUP 1'
     }
   },
   setup() {
