@@ -16,14 +16,14 @@ export const PieChart = {
         label: 'Zip Codes',
         data: [5, 8, 9, 2, 10, 14, 27, 14],
         backgroundColor: [
-          '#d00000',
-          '#d92f00',
-          '#e04800',
-          '#e85d00',
-          '#ee7000',
-          '#f48300',
-          '#fa9500',
-          '#ffa600'
+          '#c31a36',
+          '#d03132',
+          '#db452e',
+          '#e55729',
+          '#ee6a22',
+          '#f57c1b',
+          '#fb8e11',
+          '#ffa104'
         ],
         borderColor: 'black',
         borderWidth: 2
