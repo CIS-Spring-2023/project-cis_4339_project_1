@@ -161,11 +161,11 @@ export default {
           <div></div>
           <div></div>
           <!-- form field -->
+          
           <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
         >
-          <h2 class="text-2xl font-bold">Services Offered</h2>
-          
+          <h2 class=" p-8 bg-success text-2xl font-bold">Services Offered</h2></div>
           <div class="flex flex-col">
             <label class="block"></label>
            <ul>
@@ -180,8 +180,8 @@ export default {
                 />
                 <span :class="{ deactive: servicel.deactivated }">{{ servicel.serviceName }}</span>
               <!-- this is where a v if logged in is needed all below this  -->
-
-              <button class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+                <!-- ACTIVE/INACTIVE BUTTON -->
+              <button class="bg-red-700 text-white rounded" 
              @click.prevent="servicel.deactivated = !servicel.deactivated">
             {{ servicel.deactivated ? 'Inactive' : 'Active' }}
              </button>
@@ -191,9 +191,7 @@ export default {
               <input type = text  
                      class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                      v-model=" servicel.serviceName " v-if="editing">
-              <button
-               class="bg-red-700 text-white rounded"
-              @click="removeServicel(servicel)">X</button>
+             
 
               <!-- that should be all the things that are needed -->
               </li>
@@ -271,7 +269,7 @@ export default {
                 <span class="ml-2">Early Childhood Education</span>
               </label>
             </div> -->
-          </div>
+          
         </div>
 
         <!-- grid container -->
