@@ -120,6 +120,7 @@ export default {
               </span>
             </label>
           </div>
+          </div>
 
           <!-- form field -->
           <div class="flex flex-col">
@@ -160,11 +161,16 @@ export default {
           <div></div>
           <div></div>
           <!-- form field -->
-          <div class="flex flex-col grid-cols-3">
-            <label>Services Offered at Event</label>
-            <ul>
+          <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
+        >
+          <h2 class="text-2xl font-bold">Services Offered</h2>
+          
+          <div class="flex flex-col">
+            <label class="block"></label>
+           <ul>
               <li v-for="servicel in filteredActive" :key="servicel.id">
-                <input
+                <input 
                   type= "checkbox"
                   :id=  servicel.serviceName
                   :value= servicel.serviceName
@@ -177,29 +183,39 @@ export default {
               <input type="checkbox" v-model="servicel.deactivated">
               <!-- thi sis the button that will be used to deactivate a  -->
 
-
-              <input type = text v-model=" servicel.serviceName " v-if="editing">
+            
+              <input type = text  
+                     class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                     v-model=" servicel.serviceName " v-if="editing">
               <button
-              class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+               class="bg-red-700 text-white rounded"
               @click="removeServicel(servicel)">X</button>
 
               <!-- that should be all the things that are needed -->
               </li>
             </ul>
-            <!-- another if editor should go here  -->
-            <button @click.prevent="hidede = !hidede">
+            <!-- SHOW DEACTIVATED BUTTON  -->
+            <button class="bg-red-700 text-white rounded"
+            @click.prevent="hidede = !hidede">
             {{ hidede ? 'Show Deactivated' : 'Hide Deactivated' }}
              </button>
-             <button class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" 
+
+             <!-- EDIT AND UPDATE BUTTON -->
+             <button class="bg-red-700 text-white rounded"
              @click.prevent="editing = !editing">
             {{ editing ? 'Update' : 'Edit' }}
              </button>
-            <div>
+             
+             <!-- ADD SERVICE BUTTON -->
+             <div class="flex justify-between mt-10 mr-20">
               <form @submit.prevent="addser">
-              <input v-model="newser">
-              <button>Add Service</button>
+              <input class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    v-model="newser">
+              <button class="bg-red-700 text-white rounded">Add Service</button>
               </form>
+             
             </div>
+        
               <!-- <label for="familySupport" class="inline-flex items-center">
                 <input
                   type="checkbox"
