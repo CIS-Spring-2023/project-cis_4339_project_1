@@ -8,7 +8,7 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform'
+      orgName: 'CIS 4339 GROUP 1'
     }
   },
   setup() {
@@ -32,7 +32,7 @@ export default {
         <nav class="mt-10">
           <ul class="flex flex-col gap-4">
             <li>
-              <router-link to="/login">
+              <router-link to="/login" v-if="!user.isLoggedIn">
                 <span
                 style="position: relative; top:6px"
                 class="material-icons"
@@ -69,6 +69,16 @@ export default {
                   >event</span
                 >
                 Create Event
+              </router-link>
+            </li>
+            <li v-if = "user.isViewer">
+              <router-link to="/viewservices">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                View Services
               </router-link>
             </li>
             <li v-if = "user.isViewer">
