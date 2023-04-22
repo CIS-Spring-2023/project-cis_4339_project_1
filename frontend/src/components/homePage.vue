@@ -112,11 +112,11 @@ export default {
             </tbody>
           </table>
           <div>
-            <AttendanceChart
+            <!-- <AttendanceChart
               v-if="!loading && !error"
               :label="labels"
               :chart-data="chartData"
-            ></AttendanceChart>
+            ></AttendanceChart> -->
             <PieChart></PieChart>
             <!-- Start of loading animation -->
             <div class="mt-40" v-if="loading">

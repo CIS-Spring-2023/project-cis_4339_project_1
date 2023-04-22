@@ -1,11 +1,13 @@
+import axios from "axios"; // Import Axios library
+
 export const PieChart = {
     type: "pie",
     data: {
-      labels: ["77459", "77477", "75201", "73344", "75002", "75011", "75022", "75014"],
+      labels: [],
       datasets: [
         {
           label: "Zip Codes",
-          data: [5, 8, 9, 2, 10, 14, 27, 14],
+          data: [],
           backgroundColor: ['#c80000',
                             '#d33300',
                             '#dd4e00',
@@ -13,7 +15,9 @@ export const PieChart = {
                             '#ed7c00',
                             '#f49100',
                             '#faa600',
-                            '#ffbb06'],
+                            '#ffbb06',
+                            '#ffdc80',
+                            '#f55353'],
           borderColor: "black",
           borderWidth: 1
         }
@@ -25,4 +29,14 @@ export const PieChart = {
     }
   };
   
+  // axios.get("http://localhost:3000/clients/") // Update the URL to match your back end API endpoint
+  // .then(response => {
+  //   // Update labels and data arrays with data from back end
+  //   PieChart.data.labels = response.data.labels;
+  //   PieChart.data.datasets[0].data = response.data.data;
+  // })
+  // .catch(error => {
+  //   console.error("Failed to fetch data from back end:", error);
+  // });
+
   export default PieChart;
