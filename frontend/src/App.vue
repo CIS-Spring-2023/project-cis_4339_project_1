@@ -41,6 +41,22 @@ export default {
                 Login Page
               </router-link>
             </li>
+            <li class="nav-item dropdown" v-if="user.isLoggedIn">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarUserMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >
+              <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >account_circle</span>
+              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
+            </a>
+          </li>
             <li>
               <router-link to="/">
                 <span
@@ -101,6 +117,15 @@ export default {
                 Find Event
               </router-link>
             </li>
+            <li v-if = "user.isLoggedIn">
+              <br>
+                <a href="">
+                    <span
+                    @click = "store.logout()" class="nav-link"><i style="position: relative; top: 6px"
+                    class="material-icons">logout</i>
+                    </span> Logout 
+                </a>
+            </li>
             <li class="nav-item" v-if="!user.isLoggedIn">
             <router-link class="nav-link" to="/login">
               <span
@@ -109,25 +134,6 @@ export default {
                   ></span
                 >
                 </router-link>
-          </li>
-          <li class="nav-item dropdown" v-if="user.isLoggedIn">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarUserMenuLink"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarUserMenuLink">
-              <li class="nav-item">
-                <a href="">
-                  <span @click="store.logout()" class="nav-link"><i class="bi bi-box-arrow-left"></i> Logout</span>
-                </a>
-              </li>
-            </ul>
           </li>
           </ul>
         </nav>
