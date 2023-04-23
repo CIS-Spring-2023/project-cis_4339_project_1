@@ -1,54 +1,68 @@
-<template>
-  <div>
-    <!-- canvas element for chart -->
-    <canvas id="PieChart"></canvas>
-  </div>
-</template>
-  
-  
-  <script>
-  import { Chart, registerables } from 'chart.js'
-  import PieChart from '../assets/PieChart.js'
-  import axios from 'axios'
-  
-  //we have to register the registerables with Chart object
-  Chart.register(...registerables);
-  export default {
-    name: 'PieChart',
-    data() {
-      return {
-        pieChart: null, //store chart object
-        labels:[],
-        data: []
-      }
-    },
-    //establish Chart object after mounting the component
-    mounted() {
-      const ctx = document.getElementById('PieChart');
-      this.pieChart = new Chart(ctx, PieChart);
+<script>
+import { Chart, registerables } from 'chart.js'
+Chart.register(...registerables)
 
-      // Make API request to backend and retrieve data
-      axios.get('http://localhost:3000/clients/')
-      .then(response => {
-        // Update the labels and data in the chart based on the retrieved data
-        this.labels = response.data.map(client => client.address.zip);
-        this.data = response.data.map(client => client.count);
-        this.updateChart(); // Call update() method to apply changes to the chart
-      })
-      .catch(error => {
-        console.error('Failed to retrieve data from backend:', error);
-      });
+export default {
+  props: {
+    label: {
+      type: Array
     },
-    methods: {
-    updateChart() {
-      // Update the chart data
-      this.pieChart.data.labels = this.labels;
-      this.pieChart.data.datasets[0].data = this.data;
-      this.pieChart.update(); // Call update() method to apply changes to the chart
+    chartData: {
+      type: Array
+    }
+  },
+  async mounted() {
+    console.log(this.chartData)
+    const backgroundColor = this.chartData.map(() => this.getColor())
+    const borderColor = backgroundColor.map((e) =>
+      e.replace(/[\d\.]+\)$/g, '1)')
+    )
+    await new Chart(this.$refs.attendanceChart, {
+      type: 'pie',
+      data: {
+        labels: this.label,
+        datasets: [
+          {
+            borderWidth: 1,
+            backgroundColor: backgroundColor,
+            borderColor: borderColor,
+            data: this.chartData
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            ticks: {
+              stepSize: 1
+            }
+          },
+          x: {
+            gridLines: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: true
+      }
+    })
+  },
+  methods: {
+    getColor() {
+      let channel = () => Math.random() * 255
+      return `rgba(${channel()}, ${channel()}, ${channel()}, 0.2)`
     }
   }
-} 
-  </script>
-
-
-
+}
+</script>
+<template>
+  <div class="shadow-lg rounded-lg overflow-hidden">
+    <canvas class="p-10" ref="attendanceChart"></canvas>
+  </div>
+</template>

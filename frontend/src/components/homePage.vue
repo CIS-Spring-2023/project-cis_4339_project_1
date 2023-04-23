@@ -16,11 +16,15 @@ export default {
       labels: [],
       chartData: [],
       loading: false,
-      error: null
+      error: null,
+      l2:false,
+      zip:[],
+      zipcount:[]
     }
   },
   mounted() {
     this.getAttendanceData()
+    this.getzip()
   },
   methods: {
     async getAttendanceData() {
@@ -67,6 +71,43 @@ export default {
     // method to allow click through table to event details
     editEvent(eventID) {
       this.$router.push({ name: 'eventdetails', params: { id: eventID } })
+    },
+    async getzip() {
+      try {
+        this.l2=true
+        const response = await axios.get(`${apiURL}/clients/zip`)
+        // console.log(response)
+        this.zipcount = response.data.map(
+          (item) => `${item.count}`
+        )
+        this.zip = response.data.map(
+          (item) => `${item._id}`
+        )
+        
+         //console.log(this.zip)
+        // this.chartData = response.data.map((item) => item.attendees.length)
+      } catch (err) {
+        if (err.response) {
+          // client received an error response (5xx, 4xx)
+          this.error = {
+            title: 'Server Response',
+            message: err.message
+          }
+        } else if (err.request) {
+          // client never received a response, or request never left
+          this.error = {
+            title: 'Unable to Reach Server',
+            message: err.message
+          }
+        } else {
+          // There's probably an error in your code
+          this.error = {
+            title: 'Application Error',
+            message: err.message
+          }
+        }
+      }
+      this.l2 = false
     }
   }
 }
@@ -112,14 +153,18 @@ export default {
             </tbody>
           </table>
           <div>
-            <!-- <AttendanceChart
+            <AttendanceChart
               v-if="!loading && !error"
               :label="labels"
               :chart-data="chartData"
-            ></AttendanceChart> -->
-            <PieChart></PieChart>
+            ></AttendanceChart>
+            <PieChart
+            v-if="!l2"
+            :label="zip"
+            :chart-data="zipcount"
+            ></PieChart>
             <!-- Start of loading animation -->
-            <div class="mt-40" v-if="loading">
+            <div class="mt-40" v-if="l2">
               <p
                 class="text-6xl font-bold text-center text-gray-500 animate-pulse"
               >
