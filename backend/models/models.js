@@ -131,14 +131,25 @@ const eventDataSchema = new Schema(
 
 // add services data 
 const serviceDataSchema = new Schema(
-
-//fill data in 
-
-
-
-
-
+  {
+    _id: { type: String, default: uuid.v1 },
+    name: {
+      type: String,
+      required: true
+    },
+    status: {
+      type: String,
+      required: true
+    },
+    description: {
+      type:String
+    }
+  },
+  {
+    collection: 'services'
+  }
 )
+
 
 
 
@@ -146,7 +157,7 @@ const serviceDataSchema = new Schema(
 const clients = mongoose.model('client', clientDataSchema)
 const orgs = mongoose.model('org', orgDataSchema)
 const events = mongoose.model('event', eventDataSchema)
-const services = mongoose.model('service', serviceDataSchema)
+const services = mongoose.model('services', serviceDataSchema)
 
 // package the models in an object to export
 module.exports = { clients, orgs, events, services }

@@ -24,10 +24,11 @@ const { services } = require('../models/models')
 
 // Get ALL services
 router.get('/', (req, res, next) => {
-  // Use find() without any condition to retrieve all documents
-  services.find({}, (error, data) => {
+  services.find({ org: org }, (error, data) => {
     if (error) {
       return next(error)
+    } else if (!data) {
+      res.status(400).send('Service not found')
     } else {
       res.json(data)
     }
