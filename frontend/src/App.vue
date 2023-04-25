@@ -87,7 +87,7 @@ export default {
                 Create Event
               </router-link>
             </li>
-            <li v-if = "user.isViewer">
+            <li v-if = "user.isEditor">
               <router-link to="/viewservices">
                 <span
                   style="position: relative; top: 6px"

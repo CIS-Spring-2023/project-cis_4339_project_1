@@ -61,7 +61,7 @@ export default {
     </div>
     <div class="px-10 py-20">
       <!-- @submit.prService stops the submit Service from reloading the page-->
-      <form @submit.prService="handleSubmitForm">
+      <form @submit.prevent="handleSubmitForm">
         <!-- grid container -->
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
