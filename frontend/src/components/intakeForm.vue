@@ -2,9 +2,7 @@
 import useVuelidate from '@vuelidate/core'
 import { required, email, alpha, numeric } from '@vuelidate/validators'
 import axios from 'axios'
-const apiURL = "http://localhost:3000"
-
-
+const apiURL = import.meta.env.VITE_ROOT_API
 export default {
   setup() {
     return { v$: useVuelidate({ $autoDirty: true }) }

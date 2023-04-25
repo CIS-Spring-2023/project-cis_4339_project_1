@@ -6,7 +6,9 @@ import useVuelidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
+
 export default {
+  props: ['id'],
   setup() {
     return { v$: useVuelidate({ $autoDirty: true }) }
   },
@@ -21,24 +23,20 @@ export default {
       }
     }
   },
-  methods: {
-    async handleSubmitForm() {
-      // Checks to see if there are any errors in validation
-      const isFormCorrect = await this.v$.$validate()
-      // If no errors found. isFormCorrect = True then the form is submitted
-      if (isFormCorrect) {
-        axios
-          .post(`${apiURL}/services`, this.Service)
-          .then(() => {
-            alert('Service has been added.')
-            this.$router.push({ name: 'findservices' })
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-      }
+   methods: {
+    handleServiceUpdate() {
+      axios.put(`${apiURL}/services/update/${this.id}`, this.Service).then(() => {
+        alert('Update has been saved.')
+        this.$router.back()
+      })
+    },
+    serviceDeactivate() {
+      axios.delete(`${apiURL}/services/${this.id}`).then(() => {
+        alert('Service has been deactivated.')
+        this.$router.push({ name: 'updateservice' })
+      })
     }
-  },
+      },
   // sets validations for the various data properties
   validations() {
     return {
@@ -126,10 +124,38 @@ export default {
             </label>
           </div>
         </div>
-        <div class="flex justify-between mt-10 mr-20">
-          <button class="bg-red-700 text-white rounded" type="submit">
-            Add New Service
-          </button>
+
+        <!--grid container -->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
+        >
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="handleServiceUpdate"
+              type="submit"
+              class="bg-green-700 text-white rounded"
+            >
+              Update Service
+            </button>
+          </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              @click="serviceDeactivate"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >
+              Deactivate Service
+            </button>
+          </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              type="reset"
+              class="border border-red-700 bg-white text-red-700 rounded"
+              @click="$router.back()"
+            >
+              Go back
+            </button>
+          </div>
         </div>
       </form>
     </div>

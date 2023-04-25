@@ -134,11 +134,6 @@ export default {
                 <th class="p-4 text-left">Event Date</th>
                 <th class="p-4 text-left">Number of Attendees</th>
               </tr>
-              <tr class="p-4 text-left">
-                <th class="p-4 text-left">Party</th>
-                <th class="p-4 text-left">3-10-2023</th>
-                <th class="p-4 text-left">12</th>
-              </tr>
             </thead>
             <tbody class="divide-y divide-gray-300">
               <tr

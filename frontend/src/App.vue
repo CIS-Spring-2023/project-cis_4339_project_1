@@ -92,7 +92,7 @@ export default {
                 <span
                   style="position: relative; top: 6px"
                   class="material-icons"
-                  >search</span
+                  >format_list_bulleted</span
                 >
                 View Services
               </router-link>
@@ -115,6 +115,16 @@ export default {
                   >search</span
                 >
                 Find Event
+              </router-link>
+            </li>
+            <li v-if = "user.isViewer">
+              <router-link to="/findservices">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >search</span
+                >
+                Find Services
               </router-link>
             </li>
             <li v-if = "user.isLoggedIn">

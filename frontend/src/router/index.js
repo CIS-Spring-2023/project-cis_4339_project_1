@@ -51,6 +51,18 @@ const routes = [
     name: 'viewservices',
     props: true,
     component: () => import('../components/viewServices.vue')
+  },
+  {
+    path: '/findservices',
+    name: 'findservices',
+    // props: true,
+    component: () => import('../components/findServices.vue')
+  },
+  {
+    path: '/updateservice/:id',
+    name: 'updateservice',
+    // props: true,
+    component: () => import('../components/updateService.vue')
   }
 ]
 const router = createRouter({
