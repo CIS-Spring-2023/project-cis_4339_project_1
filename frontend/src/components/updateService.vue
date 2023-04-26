@@ -3,7 +3,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required } from '@vuelidate/validators'
+import { required, alpha } from '@vuelidate/validators'
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
 
@@ -23,17 +23,25 @@ export default {
       }
     }
   },
+  created() {
+    axios.get(`${apiURL}/services/id/${this.$route.params.id}`).then((res) => {
+      // simplified setting client
+      this.Service = res.data
+    })
+  },
    methods: {
     handleServiceUpdate() {
-      axios.put(`${apiURL}/services/update/${this.id}`, this.Service).then(() => {
+      // using the parameter from the page before 
+      axios.put(`${apiURL}/services/update/${this.$route.params.id}`, this.Service).then(() => {
         alert('Update has been saved.')
         this.$router.back()
       })
     },
     serviceDeactivate() {
-      axios.delete(`${apiURL}/services/${this.id}`).then(() => {
+      // using the parameter from the page before 
+      axios.delete(`${apiURL}/services/${this.$route.params.id}`).then(() => {
         alert('Service has been deactivated.')
-        this.$router.push({ name: 'updateservice' })
+        this.$router.push({ name: 'findservices' })
       })
     }
       },
@@ -59,7 +67,7 @@ export default {
     </div>
     <div class="px-10 py-20">
       <!-- @submit.prService stops the submit Service from reloading the page-->
-      <form @submit.prService="handleSubmitForm">
+      <form @submit.prevent="handleSubmitForm">
         <!-- grid container -->
         <div
           class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
@@ -111,6 +119,8 @@ export default {
             </label>
           </div>
 
+          
+
           <div></div>
           <div></div>
           <!-- form field -->
@@ -120,6 +130,7 @@ export default {
               <textarea
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 rows="2"
+                v-model="Service.description"
               ></textarea>
             </label>
           </div>

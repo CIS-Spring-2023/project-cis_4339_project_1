@@ -58,6 +58,7 @@ export default {
       >
         Service List
       </h1>
+      <h2 class="italic text-center">Click table row to edit/display an entry</h2>
     </div>
     <div class="px-10 pt-20">
       <div
@@ -86,7 +87,7 @@ export default {
           </label>
         </div> -->
         <!-- Displays service status search field -->
-        <div class="flex flex-col" v-if="searchBy === 'Service Status'">
+        <!-- <div class="flex flex-col" v-if="searchBy === 'Service Status'">
           <select
             class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             v-model="status"
@@ -94,12 +95,12 @@ export default {
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
           </select>
-        </div>
+        </div> -->
       </div>
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
       >
-        <div></div>
+        <!-- <div></div>
         <div></div>
         <div class="mt-5 grid-cols-2">
           <button
@@ -116,19 +117,18 @@ export default {
           >
             Search Service
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
 
     <hr class="mt-10 mb-10" />
     <!-- Display Found Data -->
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
-    >
-      <div class="ml-10">
+    <div class="flex justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 mx-auto">
+      <!-- <div class="ml-10">
         <h2 class="text-2xl font-bold">List of Services</h2>
         <h3 class="italic">Click table row to edit/display an entry</h3>
-      </div>
+      </div> -->
       <div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-xl">
@@ -152,5 +152,6 @@ export default {
         </table>
       </div>
     </div>
+  </div>
   </main>
 </template>
