@@ -56,16 +56,16 @@ export default {
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
       >
-        View Service
+        Service List
       </h1>
     </div>
     <div class="px-10 pt-20">
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10"
       >
-        <h2 class="text-2xl font-bold">Search Service By</h2>
+        <!-- <h2 class="text-2xl font-bold">Search Service By</h2> -->
         <!-- Displays Service Name search field -->
-        <div class="flex flex-col">
+        <!-- <div class="flex flex-col">
           <select
             class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             v-model="searchBy"
@@ -73,8 +73,8 @@ export default {
             <option value="Service Name">Service Name</option>
             <option value="Service Status">Service Status</option>
           </select>
-        </div>
-        <div class="flex flex-col" v-if="searchBy === 'Service Name'">
+        </div> -->
+        <!-- <div class="flex flex-col" v-if="searchBy === 'Service Name'">
           <label class="block">
             <input
               type="text"
@@ -84,7 +84,7 @@ export default {
               placeholder="Enter service name"
             />
           </label>
-        </div>
+        </div> -->
         <!-- Displays service status search field -->
         <div class="flex flex-col" v-if="searchBy === 'Service Status'">
           <select
