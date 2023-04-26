@@ -8,7 +8,7 @@ const { users } = require('../models/models')
 
 
 // Login API
-router.post('/', async (req, res, next) => {
+router.post('/login', async (req, res, next) => {
     const {username, password} = req.body
 
     if (!(username && password)) {
