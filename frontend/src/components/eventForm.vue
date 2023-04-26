@@ -47,13 +47,14 @@ export default {
       }
     },
     showServicesAvailable() {
-      axios.get(`${apiURL}/services`)
-        .then((response) => {
-          this.viewServices = response.data;
-        })
-        .catch((error) => {
-          console.log(error)
-        });
+      axios.get(`${apiURL}/services`).then((res) => {
+        const list = res.data;
+        for (let i = 0; i < list.length; i++) {
+          if (list[i].status == 'active') {
+            this.viewServices.push(list[i]);
+          }
+        }
+      })
     }
   },
   // sets validations for the various data properties
@@ -146,17 +147,21 @@ export default {
           <div></div>
           <div></div>
           <!-- form field -->
-            <div class="flex flex-col grid-cols-3">
-            <label>Services Offered at Event</label>
-            <div>
-                <ul>
-                  <li v-for="service in viewServices" :key="service.id">
-                    {{ service.name }}
-                    <input type="checkbox" id="myCheck">
-                  </li>
-                </ul>
-            </div>
-          </div>
+            <ul>
+            <li v-for="Service in viewServices">
+              <label :for="Service.name" class="inline-flex items-center">
+                <input
+                  type="checkbox"
+                  :id="Service.name.toLowerCase().split(' ').join('')"
+                  :value="Service.name"
+                  v-model="event.services"
+                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
+                  notchecked
+                />
+                <span class="ml-2">{{ Service.name }}</span>
+              </label>
+            </li>
+          </ul>
         </div>
 
         <!-- grid container -->
