@@ -25,13 +25,13 @@ export default {
         endpoint = `services/search/?status=${this.Service.status}&searchBy=status`
       }
       axios.get(`${apiURL}/${endpoint}`).then((res) => {
-        this.queryData = res.data
+        this.services = res.data
       })
     },
     // abstract get services call
     getServices() {
       axios.get(`${apiURL}/services`).then((res) => {
-        this.queryData = res.data
+        this.services = res.data
       })
       window.scrollTo(0, 0)
     },
@@ -56,7 +56,7 @@ export default {
       <h1
         class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"
       >
-        Find Service
+        View Service
       </h1>
     </div>
     <div class="px-10 pt-20">
@@ -79,7 +79,7 @@ export default {
             <input
               type="text"
               class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              v-model="Service.name"
+              v-model="name"
               v-on:keyup.enter="handleSubmitForm"
               placeholder="Enter service name"
             />
@@ -89,7 +89,7 @@ export default {
         <div class="flex flex-col" v-if="searchBy === 'Service Status'">
           <select
             class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-            v-model="Service.status"
+            v-model="status"
             >
             <option value="Active">Active</option>
             <option value="Inactive">Inactive</option>
@@ -133,25 +133,20 @@ export default {
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-xl">
             <tr>
-              <th class="p-4 text-left">Name</th>
-              <th class="p-4 text-left">Status</th>
+              <th class="p-4 text-left">Service Name</th>
+              <th class="p-4 text-left">Service Status</th>
+              <th class="p-4 text-left">Service Description</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
             <tr
-              @click="Service(Service._id)"
-              v-for="service in services"
-              :key="service._id"
+              @click="editService(Service._id)"
+              v-for="Service in services"
+              :key="Service._id"
             >
-              <td class="p-2 text-left">
-                {{ Service.name }}
-              </td>
-              <td class="p-2 text-left">
-                {{ Service.status }}
-              </td>
-              <td class="p-2 text-left">
-                {{ Service.description }}
-              </td>
+              <td class="p-2 text-left">{{ Service.name }}</td>
+              <td class="p-2 text-left">{{ Service.status }}</td>
+              <td class="p-2 text-left">{{ Service.description }}</td>
             </tr>
           </tbody>
         </table>

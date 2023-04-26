@@ -94,7 +94,7 @@ export default {
                   class="material-icons"
                   >format_list_bulleted</span
                 >
-                View Services
+                Add Services
               </router-link>
             </li>
             <li v-if = "user.isViewer">
@@ -124,7 +124,7 @@ export default {
                   class="material-icons"
                   >search</span
                 >
-                Find Services
+                View Services
               </router-link>
             </li>
             <li v-if = "user.isLoggedIn">
