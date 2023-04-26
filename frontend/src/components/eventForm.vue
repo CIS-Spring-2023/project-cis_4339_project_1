@@ -152,6 +152,7 @@ export default {
                 <ul>
                   <li v-for="service in viewServices" :key="service.id">
                     {{ service.name }}
+                    <input type="checkbox" id="myCheck">
                   </li>
                 </ul>
             </div>
