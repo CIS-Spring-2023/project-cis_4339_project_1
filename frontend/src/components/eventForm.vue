@@ -147,8 +147,9 @@ export default {
           <div></div>
           <div></div>
           <!-- form field -->
-            <ul>
-            <li v-for="Service in viewServices">
+          <div class="flex flex-col grid-cols-3">
+            <label>Services Offered at Event</label>
+            <div v-for="Service in viewServices">
               <label :for="Service.name" class="inline-flex items-center">
                 <input
                   type="checkbox"
@@ -160,8 +161,8 @@ export default {
                 />
                 <span class="ml-2">{{ Service.name }}</span>
               </label>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
         <!-- grid container -->
