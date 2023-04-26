@@ -158,11 +158,11 @@ const userSchema = new Schema(
   _id: { type: String, default: uuid.v1 },
   username: {
     type: String,
-    required: true,
+    required: true
   },
   password: {
     type: String,
-    required: true,
+    required: true
   },
   role: {
     type: String,
