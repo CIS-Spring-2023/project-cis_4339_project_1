@@ -129,7 +129,7 @@ const eventDataSchema = new Schema(
   }
 )
 
-// add services data 
+// add services schema  
 const serviceDataSchema = new Schema(
   {
     _id: { type: String, default: uuid.v1 },

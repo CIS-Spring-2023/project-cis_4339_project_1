@@ -22,8 +22,12 @@ export default {
           zip: ''
         },
         description: ''
-      }
+      },
+      viewServices: [] // will hold available services
     }
+  },
+   created() {
+    this.showServicesAvailable();
   },
   methods: {
     async handleSubmitForm() {
@@ -41,6 +45,15 @@ export default {
             console.log(error)
           })
       }
+    },
+    showServicesAvailable() {
+      axios.get(`${apiURL}/services`)
+        .then((response) => {
+          this.viewServices = response.data;
+        })
+        .catch((error) => {
+          console.log(error)
+        });
     }
   },
   // sets validations for the various data properties
@@ -133,20 +146,14 @@ export default {
           <div></div>
           <div></div>
           <!-- form field -->
-          <div class="flex flex-col grid-cols-3">
+            <div class="flex flex-col grid-cols-3">
             <label>Services Offered at Event</label>
             <div>
-              <label for="familySupport" class="inline-flex items-center">
-                <input
-                  type="checkbox"
-                  id="familySupport"
-                  value="Family Support"
-                  v-model="event.services"
-                  class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50"
-                  notchecked
-                />
-                <span class="ml-2">Family Support</span>
-              </label>
+                <ul>
+                  <li v-for="service in viewServices" :key="service.id">
+                    {{ service.name }}
+                  </li>
+                </ul>
             </div>
           </div>
         </div>
