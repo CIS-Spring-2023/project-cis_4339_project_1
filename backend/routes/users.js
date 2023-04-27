@@ -1,14 +1,14 @@
-const bcrypt = require("bycryptjs")
-const router = express.Router()
 const express = require('express')
+const router = express.Router()
 const org = process.env.ORG
 
-const { users } = require('../models/models')
 
+const { users } = require('../models/models')
+const bcrypt = require('bcrypt')
 
 
 // Login API
-router.post('/login', async (req, res, next) => {
+router.get('/login', async (req, res, next) => {
     const {username, password} = req.body
 
     if (!(username && password)) {

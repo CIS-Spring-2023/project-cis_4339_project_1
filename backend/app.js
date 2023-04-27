@@ -39,6 +39,7 @@ app.use('/events', require('./routes/events'))
 app.use('/org', require('./routes/org'))
 // adding route for service 
 app.use('/services', require('./routes/services'))
+app.use('/users', require('./routes/users'))
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
