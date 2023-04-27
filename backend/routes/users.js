@@ -9,22 +9,22 @@ const bcrypt = require('bcrypt')
 
 // Login API
 router.get('/login', async (req, res, next) => {
-    const {username, password} = req.body
-
-    if (!(username && password)) {
+    const {username, password} = req.body;
+    if (!(username && password))
+    {
         res.status(400).json({error: "Username and Password required"})
     }
     try {
-        let user = await user.findOne({ userename });
+        let user = await users.findOne({ username });
         if (!user){
            return res.status(400).json({error: "Username or Password incorrect"});
         }
         if (!await bcrypt.compare(password, user.password)) {
-            return res.status(400).json({error: "Username or Password incorrect"});
-        }
-
+            return res.status(400).json({
+                error: "Username or Password incorrect"
+            });
+            }
         res.json(user);
-
     }
     catch (err) {
         console.log(err)
