@@ -8,7 +8,7 @@ export default {
   name: 'App',
   data() {
     return {
-      orgName: 'Dataplatform'
+      orgName: 'CIS 4339 GROUP 1'
     }
   },
   setup() {
@@ -32,7 +32,7 @@ export default {
         <nav class="mt-10">
           <ul class="flex flex-col gap-4">
             <li>
-              <router-link to="/login">
+              <router-link to="/login" v-if="!user.isLoggedIn">
                 <span
                 style="position: relative; top:6px"
                 class="material-icons"
@@ -41,6 +41,22 @@ export default {
                 Login Page
               </router-link>
             </li>
+            <li class="nav-item dropdown" v-if="user.isLoggedIn">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarUserMenuLink"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >
+              <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >account_circle</span>
+              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
+            </a>
+          </li>
             <li>
               <router-link to="/">
                 <span
@@ -71,6 +87,26 @@ export default {
                 Create Event
               </router-link>
             </li>
+            <li v-if = "user.isEditor">
+              <router-link to="/viewservices">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >add</span
+                >
+                Add Services
+              </router-link>
+            </li>
+            <li v-if = "user.isViewer">
+              <router-link to="/findservices">
+                <span
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >format_list_bulleted</span
+                >
+                Find Service
+              </router-link>
+            </li>
             <li v-if = "user.isViewer">
               <router-link to="/findclient">
                 <span
@@ -91,6 +127,15 @@ export default {
                 Find Event
               </router-link>
             </li>
+            <li v-if = "user.isLoggedIn">
+              <br>
+                <a href="">
+                    <span
+                    @click = "store.logout()" class="nav-link"><i style="position: relative; top: 6px"
+                    class="material-icons">logout</i>
+                    </span> Logout 
+                </a>
+            </li>
             <li class="nav-item" v-if="!user.isLoggedIn">
             <router-link class="nav-link" to="/login">
               <span
@@ -99,25 +144,6 @@ export default {
                   ></span
                 >
                 </router-link>
-          </li>
-          <li class="nav-item dropdown" v-if="user.isLoggedIn">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarUserMenuLink"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarUserMenuLink">
-              <li class="nav-item">
-                <a href="">
-                  <span @click="store.logout()" class="nav-link"><i class="bi bi-box-arrow-left"></i> Logout</span>
-                </a>
-              </li>
-            </ul>
           </li>
           </ul>
         </nav>

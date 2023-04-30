@@ -129,10 +129,60 @@ const eventDataSchema = new Schema(
   }
 )
 
+// add services schema  
+const serviceDataSchema = new Schema(
+  {
+    _id: { type: String, default: uuid.v1 },
+    name: {
+      type: String,
+      required: true
+    },
+    status: {
+      type: String,
+      required: true
+    },
+    description: {
+      type:String
+    }
+  },
+  {
+    collection: 'services'
+  }
+)
+
+
+//collection for user
+
+const userSchema = new Schema(
+{
+  _id: { type: String, default: uuid.v1 },
+  username: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  role: {
+    type: String,
+    required: false
+  }
+},
+{
+  collections: 'users',
+}
+)
+
+
+
+
 // create models from mongoose schemas
 const clients = mongoose.model('client', clientDataSchema)
 const orgs = mongoose.model('org', orgDataSchema)
 const events = mongoose.model('event', eventDataSchema)
+const services = mongoose.model('services', serviceDataSchema)
+const users = mongoose.model('users', userSchema)
 
 // package the models in an object to export
-module.exports = { clients, orgs, events }
+module.exports = { clients, orgs, events, services, users }

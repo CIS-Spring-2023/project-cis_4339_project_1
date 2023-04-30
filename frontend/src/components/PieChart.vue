@@ -1,29 +1,68 @@
-<template>
-    <div>
-      <!-- canvas element for chart -->
-      <canvas id="PieChart"></canvas>
-    </div>
-  </template>
-  
-  
-  <script>
-  import { Chart, registerables } from 'chart.js'
-  import PieChart from '../assets/PieChart.js'
-  
-  //we have to register the registerables with Chart object
-  Chart.register(...registerables);
-  export default {
-    name: 'PieChart',
-    data() {
-      return {
-        PieChart: PieChart
-      }
+<script>
+import { Chart, registerables } from 'chart.js'
+Chart.register(...registerables)
+
+export default {
+  props: {
+    label: {
+      type: Array
     },
-    //establish Chart object after mounting the component
-    mounted() {
-      const ctx = document.getElementById('PieChart');
-      new Chart(ctx, this.PieChart);
+    chartData: {
+      type: Array
+    }
+  },
+  async mounted() {
+    console.log(this.chartData)
+    const backgroundColor = this.chartData.map(() => this.getColor())
+    const borderColor = backgroundColor.map((e) =>
+      e.replace(/[\d\.]+\)$/g, '1)')
+    )
+    await new Chart(this.$refs.attendanceChart, {
+      type: 'pie',
+      data: {
+        labels: this.label,
+        datasets: [
+          {
+            borderWidth: 1,
+            backgroundColor: backgroundColor,
+            borderColor: borderColor,
+            data: this.chartData
+          }
+        ]
+      },
+      options: {
+        scales: {
+          y: {
+            ticks: {
+              stepSize: 1
+            }
+          },
+          x: {
+            gridLines: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: true
+      }
+    })
+  },
+  methods: {
+    getColor() {
+      let channel = () => Math.random() * 255
+      return `rgba(${channel()}, ${channel()}, ${channel()}, 0.2)`
     }
   }
-  </script>
-  
+}
+</script>
+<template>
+  <div class="shadow-lg rounded-lg overflow-hidden">
+    <canvas class="p-10" ref="attendanceChart"></canvas>
+  </div>
+</template>
