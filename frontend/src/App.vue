@@ -28,10 +28,11 @@ export default {
             <li>
               <router-link to="/login">
                 <span
-                style="position: relative; top:6px"
-                class="material-icons"
-                >login</span>
-                
+                  style="position: relative; top: 6px"
+                  class="material-icons"
+                  >login</span
+                >
+
                 Login Page
               </router-link>
             </li>

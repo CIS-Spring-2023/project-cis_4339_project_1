@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <!-- eslint-disable prettier/prettier -->
 // eslint-disable-next-line vue/multi-word-component-names
 <!-- login.vue -->
