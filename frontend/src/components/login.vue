@@ -53,8 +53,6 @@
 
 <script>
 import { useLoggedInUserStore } from '@/store/loginuser'
-import { required } from '@vuelidate/validators'
-import useVuelidate from '@vuelidate/core'
 
 export default {
   data: () => {
@@ -66,14 +64,8 @@ export default {
   setup() {
     const store = useLoggedInUserStore()
     return {
-      v$: useVuelidate( { $autoDirty: true }),
+      // you can return the whole store instance to use it in the template
       store
-    }
-  },
-  validations() {
-    return {
-      username: { required },
-      password: { required }
     }
   }
 }

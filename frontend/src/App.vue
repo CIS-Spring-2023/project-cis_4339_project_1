@@ -54,7 +54,7 @@ export default {
                   style="position: relative; top: 6px"
                   class="material-icons"
                   >account_circle</span>
-              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> <p v-if = "user.isEditor">Welcome, Admin </p> <p v-if = "user.isViewer">Welcome, Viewer </p>
+              <i class="bi bi-person-fill" style="font-size: 1rem; color: hsla(160, 100%, 37%, 1)"></i> Welcome, {{ user.name }}
             </a>
           </li>
             <li>

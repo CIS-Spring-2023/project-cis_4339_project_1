@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt')
 
 
 // Login API
-router.post('/', async (req, res, next) => {
+router.get('/login', async (req, res, next) => {
     const {username, password} = req.body;
     if (!(username && password))
     {

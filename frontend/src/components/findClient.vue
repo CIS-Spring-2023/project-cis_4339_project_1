@@ -1,7 +1,6 @@
 <script>
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
-import { useLoggedInUserStore } from "@/store/loginuser";
 
 export default {
   data() {
@@ -13,10 +12,6 @@ export default {
       lastName: '',
       phoneNumber: ''
     }
-  },
-  setup() {
-    const user = useLoggedInUserStore();
-    return { user };
   },
   created() {
     this.getClients()
@@ -158,7 +153,7 @@ export default {
           <tbody class="divide-y divide-gray-300">
             <tr
               @click="editClient(client._id)"
-              v-for="client in queryData" v-if = "user.isEditor"
+              v-for="client in queryData"
               :key="client._id"
             >
               <td class="p-2 text-left">
@@ -169,19 +164,6 @@ export default {
               </td>
               <td class="p-2 text-left">{{ client.address.city }}</td>
             </tr>
-            <tr
-              v-for="client in queryData" v-if = "user.isViewer"
-              :key="client._id"
-            >
-            <td class="p-2 text-left">
-                {{ client.firstName + ' ' + client.lastName }}
-              </td>
-              <td class="p-2 text-left">
-                {{ client.phoneNumber.primary }}
-              </td>
-              <td class="p-2 text-left">{{ client.address.city }}</td>
-            </tr>
-            
           </tbody>
         </table>
       </div>

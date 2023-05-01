@@ -154,34 +154,25 @@ const serviceDataSchema = new Schema(
 //collection for user
 
 const userSchema = new Schema(
-  {
-    _id: { type: String, default: uuid.v1 },
-    username: {
-      type: String,
-      required: true
-    },
-    password: {
-      type: String,
-      required: true
-    },
-    role: {
-      type: String,
-      required: false
-    },
-    isEditor: {
-      type: Boolean,
-      required: true
-    },
-    isViewer: {
-      type: Boolean,
-      required: true
-    }
+{
+  _id: { type: String, default: uuid.v1 },
+  username: {
+    type: String,
+    required: true
   },
-  {
-    collections: 'users',
+  password: {
+    type: String,
+    required: true
+  },
+  role: {
+    type: String,
+    required: false
   }
-  )
-
+},
+{
+  collections: 'users',
+}
+)
 
 
 
