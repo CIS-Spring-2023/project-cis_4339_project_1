@@ -5,6 +5,7 @@ This implementation is for NodeJS based on [Express](https://expressjs.com/) and
 ## Project setup
 
     npm install
+    npm install bcrypt
 
 ### Before startup
 You need a MongoDB database ready.
