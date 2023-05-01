@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
+import { useLoggedInUserStore } from "@/store/loginuser";
 
 export default {
   data() {
@@ -12,6 +13,10 @@ export default {
         description: ''
       }
     }
+  },
+  setup() {
+    const user = useLoggedInUserStore();
+    return { user };
   },
   created() {
     this.getServices()
@@ -141,7 +146,15 @@ export default {
           <tbody class="divide-y divide-gray-300">
             <tr
               @click="editService(Service._id)"
-              v-for="Service in services"
+              v-for="Service in services" v-if = "user.isEditor"
+              :key="Service._id"
+            >
+              <td class="p-2 text-left">{{ Service.name }}</td>
+              <td class="p-2 text-left">{{ Service.status }}</td>
+              <td class="p-2 text-left">{{ Service.description }}</td>
+            </tr>
+            <tr
+              v-for="Service in services" v-if = "user.isViewer"
               :key="Service._id"
             >
               <td class="p-2 text-left">{{ Service.name }}</td>

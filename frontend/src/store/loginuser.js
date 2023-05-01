@@ -1,5 +1,5 @@
-
 import { defineStore } from 'pinia'
+import axios from 'axios'
 
 //defining a store
 export const useLoggedInUserStore = defineStore({
@@ -8,26 +8,27 @@ export const useLoggedInUserStore = defineStore({
   //central part of the store
   state: () => {
     return {
-      name: "",
+      username: "",
       role:"",
       isLoggedIn: false,
-      isViewer: false,
       isEditor: false,
+      isViewer: false
     }
   },
   // equivalent to methods in components, perfect to define business logic
   actions: {
     async login(username, password) {
       try {
-        const response = await apiLogin(username, password);
+        const response = await axios.post('http://localhost:3000/users', {username: username, password: password});
         this.$patch({
-          isLoggedIn: response.isAllowed,
-          name: response.name,
-          role: response.role,
-          isViewer: response.isViewer,
-          isEditor: response.isEditor,
+          isLoggedIn: true,
+          username: response.data.name,
+          role: response.data.role,
+          isEditor: response.data.isEditor,
+          isViewer: response.data.isViewer
         })
         this.$router.push("/");
+        return true;
       } catch(error) {
         console.log(error)
       }
@@ -38,16 +39,8 @@ export const useLoggedInUserStore = defineStore({
         isLoggedIn: false
       }); 
       // trying to redirect user to dashboard 
-      this.$router.push("/");
+      this.$router.push("/login");
     }
   }
 });
-
-//simulate a login - we will later use our backend to handle authentication
-function apiLogin(u, p) {
-  if (u === "vi" && p === "vi") return Promise.resolve({ isAllowed: true, name: "Viewer", isViewer: true });
-  if (u === "ed" && p === "ed") return Promise.resolve({ isAllowed: true, name: "Admin", isEditor: true, isViewer: true });
-  if (p === "ed") return Promise.resolve({ isAllowed: false });
-  return Promise.reject(new Error("invalid credentials"));
-}
 
