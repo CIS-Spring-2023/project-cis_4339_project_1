@@ -158,7 +158,7 @@ export default {
           <tbody class="divide-y divide-gray-300">
             <tr
               @click="editClient(client._id)"
-              v-for="client in queryData" v-if = "user.isEditor"
+              v-for="client in queryData" v-if = "user.role == 'editor'"
               :key="client._id"
             >
               <td class="p-2 text-left">
@@ -170,7 +170,7 @@ export default {
               <td class="p-2 text-left">{{ client.address.city }}</td>
             </tr>
             <tr
-              v-for="client in queryData" v-if = "user.isViewer"
+              v-for="client in queryData" v-if = "user.role == 'viewer'"
               :key="client._id"
             >
             <td class="p-2 text-left">

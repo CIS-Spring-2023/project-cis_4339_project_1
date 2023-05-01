@@ -154,7 +154,7 @@ export default {
           <tbody class="divide-y divide-gray-300">
             <tr
               @click="editEvent(event._id)"
-              v-for="event in events" v-if = "user.isEditor"
+              v-for="event in events" v-if = "user.role == 'editor'"
               :key="event._id" 
             >
               <td class="p-2 text-left">{{ event.name }}</td>
@@ -162,7 +162,7 @@ export default {
               <td class="p-2 text-left">{{ event.address.line1 }}</td>
             </tr>
             <tr v-for="event in events" 
-              :key="event._id" v-if = "user.isViewer" >
+              :key="event._id" v-if = "user.role == 'viewer'" >
               <td class="p-2 text-left">{{ event.name }}</td>
               <td class="p-2 text-left">{{ formattedDate(event.date) }}</td>
               <td class="p-2 text-left">{{ event.address.line1 }}</td>

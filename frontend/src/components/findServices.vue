@@ -146,7 +146,7 @@ export default {
           <tbody class="divide-y divide-gray-300">
             <tr
               @click="editService(Service._id)"
-              v-for="Service in services" v-if = "user.isEditor"
+              v-for="Service in services" v-if = "user.role == 'editor'"
               :key="Service._id"
             >
               <td class="p-2 text-left">{{ Service.name }}</td>
@@ -154,7 +154,7 @@ export default {
               <td class="p-2 text-left">{{ Service.description }}</td>
             </tr>
             <tr
-              v-for="Service in services" v-if = "user.isViewer"
+              v-for="Service in services" v-if = "user.role == 'viewer'"
               :key="Service._id"
             >
               <td class="p-2 text-left">{{ Service.name }}</td>
