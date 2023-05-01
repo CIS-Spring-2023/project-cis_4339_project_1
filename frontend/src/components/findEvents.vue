@@ -2,6 +2,7 @@
 import { DateTime } from 'luxon'
 import axios from 'axios'
 const apiURL = import.meta.env.VITE_ROOT_API
+import { useLoggedInUserStore } from "@/store/loginuser";
 
 export default {
   data() {
@@ -12,6 +13,10 @@ export default {
       name: '',
       eventDate: ''
     }
+  },
+  setup() {
+    const user = useLoggedInUserStore();
+    return { user };
   },
   mounted() {
     this.getEvents()
