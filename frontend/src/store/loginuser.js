@@ -24,8 +24,8 @@ export const useLoggedInUserStore = defineStore({
           isLoggedIn: true,
           username: response.data.name,
           role: response.data.role,
-          isEditor: this.isEditor,
-          isViewer: this.isViewer
+          isEditor: response.data.isEditor,
+          isViewer: response.data.isViewer
         })
         this.$router.push("/");
         return true;
@@ -39,7 +39,8 @@ export const useLoggedInUserStore = defineStore({
         isLoggedIn: false
       }); 
       // trying to redirect user to dashboard 
-      this.$router.push("/");
+      this.$router.push("/login");
     }
   }
 });
+
