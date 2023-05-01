@@ -22,8 +22,8 @@ Follow instructions in frontend README for setup and running as a local instance
 
 **The following credentials are hardcoded into the application**
 ```
-Viewer - Username: vi Password: vi
+Viewer - Username: Viewer Password: vi
 ```
 ```
-Editor - Username: ed Password: ed 
+Editor - Username: Admin Password: ed 
 ```
