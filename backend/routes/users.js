@@ -10,7 +10,6 @@ const bcrypt = require('bcrypt')
 // Login API
 router.post('/', async (req, res, next) => {
     const {username, password} = req.body;
-    const hashpassword = await bcrypt.hash(password,10);
     if (!(username && password))
     {
         res.status(400).json({error: "Username and Password required"})
@@ -22,9 +21,7 @@ router.post('/', async (req, res, next) => {
         }
         if (!await bcrypt.compare(password, user.password)) {
             return res.status(400).json({
-                error: "Username or Password incorrect",
-                hashpassword: hashpassword
-
+                error: "Username or Password incorrect"
             });
             }
         res.json(user);
