@@ -14,9 +14,9 @@ Make sure you have a collection named 'org' in your database that contains at le
 
 Setup a .env file with the following variables: MONGO_URL, PORT and ORG
 
-    MONGO_URL= that is the Mongo URL connection string
-    PORT= e.g.3000
-    ORG= that is the orgid (as a string)
+    MONGO_URL= mongodb+srv://CIS4339:group1@cis4339.nbuj1bs.mongodb.net/test
+    PORT= 3000
+    ORG= "100"
 
 ### Compiles and hot-reloads for development
 
